@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     socket.emit('message', texto)
 
     socket.on('botao_sim', (usuario)=>{
-        if(verificaVoto(usuario.nome))
+        if(verificaVoto(usuario))
         {
           votados.push(usuario);
           total += 1;
@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('botao_nao', (usuario)=>{
-      if(verificaVoto(usuario.nome))
+      if(verificaVoto(usuario))
       {
         votados.push(usuario);
         total += 1;
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('botao_abster', (usuario)=>{
-      if(verificaVoto(usuario.nome))
+      if(verificaVoto(usuario))
       {
         votados.push(usuario);
         total += 1;
@@ -85,15 +85,18 @@ http.listen(port, function(){
 });
 
 
-function verificaVoto(nome)
+function verificaVoto(usuario)
 {
-  let pessoa = votados.find(element => element === nome);
-  if(pessoa || !nome)
+  console.log(votados)
+  let pessoa = votados.find(element => element === usuario);
+
+  for(let i =0; votados.length; i++)
   {
-    console.log("Não é permitido mais de um voto por pessoa")
-    return 0;
+    if(votados[i].nome === usuario.nome)
+    {
+      console.log("Não é permitido mais de um voto por pessoa")
+      return 0;
+    }
   }
-  else{
-    return 1;
-  }
+  return 1;
 }
