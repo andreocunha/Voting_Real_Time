@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Voting App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="socket.io/socket.io.js"></script>
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+    <h1>Proposta a ser votada</h1>
+    <div>
+        <textarea rows="10" cols="50" id="editor" style="background-color:dimgrey;color:white" placeholder="Type Your Text..."></textarea>
+    </div>
+
+    <div style="flex-direction: row; display: flex;">
+        <h1>Total de votos: </h1>
+        <h1 id="contagem">0</h1>
+    </div>
+
+    <div>
+        <div style="flex-direction: row; display: flex;">
+            <h2>Sim: </h2>
+            <h2 id="voto_sim">0</h2>
+        </div>
+        <div style="flex-direction: row; display: flex;">
+            <h2>Não: </h2>
+            <h2 id="voto_nao">0</h2>
+        </div>
+        <div style="flex-direction: row; display: flex;">
+            <h2>Abstenção: </h2>
+            <h2 id="voto_abstencao">0</h2>
+        </div>
+    </div>
+
+    <button id="botao_sim">SIM</button>
+    <button id="botao_nao">NÃO</button>
+    <button id="botao_abster">ABSTER</button>
+    <button id="limpar">zerar tudo</button>
+
+    <div id="chart_div"></div>   
+    <div id="chart_div2"></div>
+    
+    <div id="pessoas" style="flex-direction: row; display: flex;"></div>
+
+    <script type="text/javascript" src="voting.js"> </script>
+    <script type="text/javascript" src="chart.js"> </script>
+    <script type="text/javascript" src="text.js"> </script>
+
+</body>
+</html>

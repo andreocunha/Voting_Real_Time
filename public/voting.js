@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const botao_nao = document.querySelector('#botao_nao')
     const botao_abster = document.querySelector('#botao_abster')
 
+    const nome = localStorage.getItem("nome")
+    const PET = localStorage.getItem("PET")
+    const usuario = {nome: nome, PET: PET}
+
     function desabilitar() {
         botao_sim.disabled = true
         botao_nao.disabled = true
@@ -25,26 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     botao_sim.onmousedown = () => {
-        socket.emit('botao_sim')
+        socket.emit('botao_sim', usuario)
         desabilitar();
         localStorage.setItem('status', 'votado')
     }
 
     botao_nao.onmousedown = () => {
-        socket.emit('botao_nao')
+        socket.emit('botao_nao', usuario)
         desabilitar();
         localStorage.setItem('status', 'votado')
     }
 
     botao_abster.onmousedown = () => {
-        socket.emit('botao_abster')
+        socket.emit('botao_abster', usuario)
         desabilitar();
         localStorage.setItem('status', 'votado')
     }
 
     const contagem = document.querySelector('#contagem')
-    socket.on('total', (valor) => {
+    const pessoas_votaram = document.querySelector('#pessoas')
+    socket.on('total', (valor, votados) => {
         contagem.innerHTML = valor
+
+        pessoas_votaram.innerHTML = JSON.stringify(votados)
+        
     })
 
     const votos_sim = document.querySelector('#voto_sim')

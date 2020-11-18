@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <title>Voting App</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="socket.io/socket.io.js"></script>
-
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Login</title>
 </head>
+
 <body>
-    <div style="flex-direction: row; display: flex;">
-        <h1>Total de votos: </h1>
-        <h1 id="contagem">0</h1>
-    </div>
 
-    <div>
-        <div style="flex-direction: row; display: flex;">
-            <h1>Sim: </h1>
-            <h1 id="voto_sim">0</h1>
-        </div>
-        <div style="flex-direction: row; display: flex;">
-            <h1>Não: </h1>
-            <h1 id="voto_nao">0</h1>
-        </div>
-        <div style="flex-direction: row; display: flex;">
-            <h1>Abstenção: </h1>
-            <h1 id="voto_abstencao">0</h1>
-        </div>
-    </div>
+    <label for="fname">Nome:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="PET">PET:</label>
+    <select id="PET" name="PET">
+        <option value="Selecionar PET">Selecionar PET</option>
+        <option value="EngComp">EngComp</option>
+        <option value="Mecânica">Mecânica</option>
+        <option value="Elétrica">Elétrica</option>
+        <option value="Economia">Economia</option>
+        <option value="Educação Física">Educação Física</option>
+        <option value="Matemática">Matemática</option>
+        <option value="Psicologia">Psicologia</option>
+        <option value="Serviço Social">Serviço Social</option>
+        <option value="Administração">Administração</option>
+        <option value="Licenciaturas">Licenciaturas</option>
+        <option value="Cultura">Cultura</option>
+        <option value="Educação">Educação</option>
+        <option value="ProdBio">ProdBio</option>
+    </select>
+    <button onclick="newUser()">Entrar</button>
 
-    <button id="botao_sim">SIM</button>
-    <button id="botao_nao">NÃO</button>
-    <button id="botao_abster">ABSTER</button>
-    <button id="limpar">zerar tudo</button>
 
-    <div id="chart_div"></div>   
-    <div id="chart_div2"></div>   
+    <script>
 
-    <script type="text/javascript" src="voting.js"> </script>
-    <script type="text/javascript" src="chart.js"> </script>
+        function newUser() {
+            let nome = ''
+            let PET = ''
 
+
+
+            nome = document.getElementById("fname").value
+            PET = document.getElementById("PET").value
+
+            if (nome === '' || PET === "Selecionar PET") {
+                alert("Preencha seu nome e selecione o PET")
+                return
+            }
+
+            console.log(nome + ' do PET ' + PET)
+
+            localStorage.setItem("nome", nome);
+            localStorage.setItem("PET", PET);
+
+            showUser();
+        }
+
+        function showUser() {
+            console.log(localStorage.getItem("nome"))
+            console.log(localStorage.getItem("PET"))
+
+            window.location.href = "votingpag.html";
+        }
+
+
+    </script>
 </body>
+
 </html>
