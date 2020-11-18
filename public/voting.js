@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         voto_sim.innerHTML = valor
         voto_nao.innerHTML = valor
         voto_abstencao.innerHTML = valor
+        pessoas_votaram.innerHTML = ''
         habilitar();
         localStorage.removeItem('status')
     })
