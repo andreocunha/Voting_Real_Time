@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     botao_nao.onmousedown = () => {
-        usuario.voto = 'nao'
+        usuario.voto = 'não'
         socket.emit('botao_nao', usuario)
         desabilitar();
         localStorage.setItem('status', nome)
