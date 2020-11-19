@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nome = localStorage.getItem("nome")
     const PET = localStorage.getItem("PET")
-    const usuario = {nome: nome, PET: PET}
+    const usuario = {nome: nome, PET: PET, voto: ''}
 
     function desabilitar() {
         botao_sim.disabled = true
@@ -24,33 +24,42 @@ document.addEventListener("DOMContentLoaded", () => {
         botao_abster.disabled = false
     }
 
-    if (localStorage.getItem('status')) {
+    if (localStorage.getItem('status') === nome) {
         desabilitar();
     }
 
     botao_sim.onmousedown = () => {
+        usuario.voto = 'sim'
         socket.emit('botao_sim', usuario)
         desabilitar();
-        localStorage.setItem('status', 'votado')
+        localStorage.setItem('status', nome)
     }
 
     botao_nao.onmousedown = () => {
+        usuario.voto = 'nao'
         socket.emit('botao_nao', usuario)
         desabilitar();
-        localStorage.setItem('status', 'votado')
+        localStorage.setItem('status', nome)
     }
 
     botao_abster.onmousedown = () => {
+        usuario.voto = 'abstenção'
         socket.emit('botao_abster', usuario)
         desabilitar();
-        localStorage.setItem('status', 'votado')
+        localStorage.setItem('status', nome)
     }
 
     const contagem = document.querySelector('#contagem')
     const pessoas_votaram = document.querySelector('#pessoas')
     socket.on('total', (valor, votados) => {
         contagem.innerHTML = valor
-        pessoas_votaram.innerHTML = JSON.stringify(votados)
+
+        pessoas_votaram.innerHTML = ''
+        for(let i = 0; i<votados.length; i++)
+        {
+            pessoas_votaram.innerHTML += votados[i].nome + ' - ' + votados[i].PET + ' - ' + votados[i].voto + "<br />"
+        }
+        // pessoas_votaram.innerHTML = JSON.stringify(votados)
         
     })
 

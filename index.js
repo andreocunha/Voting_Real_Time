@@ -84,7 +84,6 @@ http.listen(port, function () {
 
 function verificaVoto(usuario) {
   console.log(votados)
-  // let pessoa = votados.find(element => element === usuario);
   console.log(votados.length)
 
   for (let i = 0; i < votados.length; i++) {
