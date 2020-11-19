@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const pessoas_votaram = document.querySelector('#pessoas')
     socket.on('total', (valor, votados) => {
         contagem.innerHTML = valor
-
         pessoas_votaram.innerHTML = JSON.stringify(votados)
         
     })
