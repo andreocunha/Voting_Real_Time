@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botao_abster.disabled = false
     }
 
+    // checa se a pessoa já votou
     if (localStorage.getItem('status') === nome) {
         desabilitar();
     }

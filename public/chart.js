@@ -50,12 +50,13 @@ function updateChart() {
       'height': 300
     };
 
-    // Instantiate and draw our chart, passing in some options.
+    // Desenha o grafico de pizza e passa as configuracoes do grafico tambem
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
-    var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
-    chart2.draw(data, options);
+    // Desenha o grafico de barras e passa as configuracoes do grafico tambem
+    // var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+    // chart2.draw(data, options);
   }
 
 }

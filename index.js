@@ -16,7 +16,8 @@ var voto_sim = 0
 var voto_nao = 0
 var voto_abster = 0
 
-var texto = ''
+var propostaAntiga = ''
+var propostaNova = ''
 var votados = []
 
 
@@ -28,7 +29,8 @@ io.on('connection', (socket) => {
   socket.emit('voto_sim', voto_sim)
   socket.emit('voto_nao', voto_nao)
   socket.emit('voto_abster', voto_abster)
-  socket.emit('message', texto)
+  socket.emit('propostaAntiga', propostaAntiga)
+  socket.emit('propostaNova', propostaNova)
 
   socket.on('botao_sim', (usuario) => {
     if (verificaVoto(usuario)) {
@@ -71,10 +73,16 @@ io.on('connection', (socket) => {
   })
 
 
-  socket.on('message', (evt) => {
-    texto = evt
-    socket.broadcast.emit('message', evt)
+  socket.on('propostaAntiga', (evt) => {
+    propostaAntiga = evt
+    socket.broadcast.emit('propostaAntiga', evt)
   })
+
+  socket.on('propostaNova', (evt) => {
+    propostaNova = evt
+    socket.broadcast.emit('propostaNova', evt)
+  })
+
 })
 
 http.listen(port, function () {

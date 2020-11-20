@@ -30,27 +30,43 @@
     </select>
     <button onclick="newUser()">Entrar</button>
 
+    <br></br>
+    <div>
+        <input type="checkbox" id="admin" name="admin" value="admin">
+        <label for="admin"> Eu sou administrador do evento</label><br>
+    </div>
+    
+
 
     <script>
 
         function newUser() {
             let nome = ''
             let PET = ''
-
+            let admin = ''
 
 
             nome = document.getElementById("fname").value
             PET = document.getElementById("PET").value
+            admin = document.getElementById("admin")
 
+            
             if (nome === '' || PET === "Selecionar PET") {
                 alert("Preencha seu nome e selecione o PET")
                 return
             }
 
-            console.log(nome + ' do PET ' + PET)
+            // console.log(nome + ' do PET ' + PET)
 
             localStorage.setItem("nome", nome);
             localStorage.setItem("PET", PET);
+            if(admin.checked){
+                localStorage.setItem("admin", admin.value);
+            }
+            else{
+                localStorage.setItem("admin", '');
+            }
+            
 
             showUser();
         }
@@ -58,6 +74,7 @@
         function showUser() {
             console.log(localStorage.getItem("nome"))
             console.log(localStorage.getItem("PET"))
+            console.log(localStorage.getItem("admin"))
 
             window.location.href = "votingpag.html";
         }

@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="socket.io/socket.io.js"></script>
 
-    <!--Load the AJAX API-->
+    <!--Carrega a API AJAX dos graficos-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 
-    <h1>Proposta a ser votada</h1>
+    <h1>Proposta anterior</h1>
     <div>
-        <textarea rows="10" cols="50" id="editor" style="background-color:dimgrey;color:white" placeholder="Escreva a proposta aqui..."></textarea>
+        <textarea rows="10" cols="50" id="propostaAntiga" style="background-color:dimgrey;color:white" placeholder="Escreva aqui a proposta antiga..."></textarea>
+    </div>
+
+    <br></br>
+
+    <h1>Proposta nova a ser votada</h1>
+    <div>
+        <textarea rows="10" cols="50" id="propostaNova" style="background-color:rgb(80, 70, 70);color:white" placeholder="Escreva aqui a proposta nova..."></textarea>
     </div>
 
     <div style="flex-direction: row; display: flex;">
@@ -42,7 +49,7 @@
     <button id="limpar">zerar tudo</button>
 
     <div id="chart_div"></div>   
-    <div id="chart_div2"></div>
+    <!-- <div id="chart_div2"></div> -->
     
     <div id="pessoas" style="flex-direction: row; display: flex;"></div>
 
