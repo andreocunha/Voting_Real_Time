@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nome = localStorage.getItem("nome")
     const PET = localStorage.getItem("PET")
-    const usuario = {nome: nome, PET: PET, voto: ''}
+    const admin = localStorage.getItem("admin")
+    const usuario = {nome: nome, PET: PET, voto: '', admin: admin}
 
     function desabilitar() {
         botao_sim.disabled = true
@@ -61,8 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
             pessoas_votaram.innerHTML += votados[i].nome + ' - ' + votados[i].PET + ' - ' + votados[i].voto + "<br />"
         }
         // pessoas_votaram.innerHTML = JSON.stringify(votados)
-        
     })
+
 
     const votos_sim = document.querySelector('#voto_sim')
     socket.on('voto_sim', (valor) => {
